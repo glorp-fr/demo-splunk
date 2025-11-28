@@ -1,0 +1,35 @@
+- name: Install
+  hosts: default
+  gather_facts: true
+  tasks:
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+      src: ./install.sh
+      dest: /homeoutscale/install.conf
+      owner: outscale
+      group: outscale
+      mode: '0644' 
+    - name: dl Splunk sources
+      ansible.builtin.shell:  /home/outscale/install.sh #wget -O splunk-10.0.2-e2d18b4767e9-linux-amd64.deb "https://download.splunk.com/products/splunk/releases/10.0.2/linux/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb"
+    #- name: install Splunk
+    #  ansible.builtin.shell: apt install splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
+    #- name: sytem variable
+    - name: Upgrade packages
+      ansible.builtin.apt:
+        force_apt_get: true
+        update_cache: true
+        upgrade: true
+        cache_valid_time: 3600
+      become: true
+    - name: Install local-all
+      ansible.builtin.apt:
+        name:
+          - locales-all
+        state: present
+      become: true
+    #- name: Install oversec
+    #  ansible.builtin.apt:
+    #    name:
+    #      - oversec
+    #    state: present
+    #  become: true
