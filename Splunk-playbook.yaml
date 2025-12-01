@@ -5,7 +5,7 @@
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
         src: ./install.sh
-        dest: /homeoutscale/install.sh
+        dest: /home/outscale/install.sh
         owner: outscale
         group: outscale
         mode: '0744' 
