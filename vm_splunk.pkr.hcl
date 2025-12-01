@@ -13,8 +13,8 @@ packer {
 }
 
 variable "region" {
- type = string
- default = "eu-west-2"
+  type = string
+  default = "eu-west-2"
 }
 variable "omi_source" {
   type =  string
@@ -56,7 +56,7 @@ build {
     ]
   }
   provisioner "ansible" {
-    playbook_file = "./Splunk_playbook.yml"
+    playbook_file = "./Splunk-playbook.yml"
     extra_arguments = [ "--scp-extra-args", "'-O'" ]
   }
 }
