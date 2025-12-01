@@ -43,7 +43,7 @@ resource "terraform_data" "packer_init_splunk" {
 
   provisioner "local-exec" {
     working_dir = "./"
-    command = "packer init vm_splunk.hcl" 
+    command = "packer init vm_splunk.pkr.hcl" 
   }
 }
 
@@ -58,7 +58,7 @@ resource "terraform_data" "packer_build_splunk" {
     OUTSCALE_SECRETKEYID = "${var.secret_key_id}"
 
     }
-    command = "packer build vm_splunk.hcl" 
+    command = "packer build vm_splunk.pkr.hcl" 
   
   }
 }
