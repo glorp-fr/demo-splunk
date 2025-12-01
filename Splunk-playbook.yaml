@@ -14,19 +14,19 @@
     #- name: install Splunk
     #  ansible.builtin.shell: apt install splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
     #- name: sytem variable
-    - name: Upgrade packages
-      ansible.builtin.apt:
-        force_apt_get: true
-        update_cache: true
-        upgrade: true
-        cache_valid_time: 3600
-      become: true
-    - name: Install local-all
-      ansible.builtin.apt:
-        name:
-          - locales-all
-        state: present
-      become: true
+    #- name: Upgrade packages
+    #  ansible.builtin.apt:
+    #    force_apt_get: true
+    #    update_cache: true
+    #    upgrade: true
+    #    cache_valid_time: 3600
+    #  become: true
+    #- name: Install local-all
+    #  ansible.builtin.apt:
+    #    name:
+    #      - locales-all
+    #    state: present
+    #  become: true
     #- name: Install oversec
     #  ansible.builtin.apt:
     #    name:
