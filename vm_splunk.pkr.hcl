@@ -42,7 +42,7 @@ source "outscale-bsu" "debian_12" {
       device_name = "/dev/sda1"
       volume_size = "40"
       volume_type = "io1"
-      iops = "10000"
+      iops = "9500"
   }
 }
 
