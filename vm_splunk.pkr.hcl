@@ -56,7 +56,7 @@ build {
     ]
   }
   provisioner "ansible" {
-    playbook_file = "./Splunk-playbook.yml"
+    playbook_file = "./Splunk-playbook.yaml"
     extra_arguments = [ "--scp-extra-args", "'-O'" ]
   }
 }
