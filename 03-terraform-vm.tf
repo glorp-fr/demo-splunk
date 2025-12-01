@@ -4,7 +4,6 @@
 locals {
   trigger = join("-", ["JTT", formatdate("YYYYMMDDhhmmss", timestamp())])
   packer_init_splunk = terraform_data.packer_init_splunk.output
-  packer_init_http = terraform_data.packer_init_http.output
   omi_delete = terraform_data.packer_build_splunk.output
   keypair_name = "kp-splunk"
 }
@@ -77,7 +76,7 @@ data "outscale_images" "splunk" {
 
 #############################################################################################################################
 #
-# VM NET1 = Serveur Splunk
+# VM NET1 = Serveur splunk
 #
 #############################################################################################################################
 
@@ -100,7 +99,7 @@ resource "outscale_vm" "splunk" {
 resource "outscale_public_ip" "splunk_pub_ip"{
 	tags {
 	key="Name"
-	value="IP_Splunk"
+	value="IP_splunk"
   }
 }
 

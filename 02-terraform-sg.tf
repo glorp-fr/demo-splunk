@@ -15,13 +15,12 @@ resource "outscale_security_group" "splunk_net_sn1_sg" {
 ################################
 resource "outscale_security_group_rule" "splunk_net_sn1_SSH_in" {
 	flow = "Inbound"
-	security_group_id = outscale_security_group.splunk_net1_sn1_sg.security_group_id
+	security_group_id = outscale_security_group.splunk_net_sn1_sg.security_group_id
 	from_port_range = "22"
 	to_port_range = "22"
 	ip_protocol = "tcp"
 	ip_range = "0.0.0.0/0" #Replace with your own IP
 }
-
 
 resource "outscale_security_group_rule" "splunk_net_sn1_http_splunk" {
 	flow = "Inbound"
