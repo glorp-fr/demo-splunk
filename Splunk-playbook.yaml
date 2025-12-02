@@ -11,6 +11,16 @@
         mode: '0744' 
     - name: install
       ansible.builtin.shell:  /home/outscale/install.sh #wget -O splunk-10.0.2-e2d18b4767e9-linux-amd64.deb "https://download.splunk.com/products/splunk/releases/10.0.2/linux/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb"
+    #- name: Reboot a slow machine that might have lots of updates to apply
+    #  ansible.builtin.reboot:
+    #  reboot_timeout: 3600
+    - name: Change ownership of /opt/splunk
+      ansible.builtin.file:
+      path: /opt/splunk
+      state: directory
+      recurse: yes
+      owner: splunk
+      group: splunk
     #- name: install Splunk
     #  ansible.builtin.shell: apt install splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
     #- name: sytem variable

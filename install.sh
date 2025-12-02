@@ -33,7 +33,7 @@ echo "auto start"
 #Mise en place du démarrage du service splunk en automatique
 $SPLUNK_HOME/bin/splunk enable boot-start -user splunk
 
-echo "update rights on /opt/splunk"
+#echo "update rights on /opt/splunk"
 #Modification des droits sur le dossier de splunk:
-sudo chown splunk  /opt/splunk -R
-exit 0
+#sudo chown splunk  /opt/splunk -R
+#exit 0
