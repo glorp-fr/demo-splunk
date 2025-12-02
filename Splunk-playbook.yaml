@@ -12,10 +12,10 @@
         deb: /home/outscale/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
       become: true
     - name: start splunk
-      ansible.builtin.shell:  /var/opt/splunk/bin/splunk start --no-prompt --answer-yes --accept-license
+      ansible.builtin.shell:  /opt/splunk/bin/splunk start --no-prompt --answer-yes --accept-license
       become: true  
     - name: stop splunk
-      ansible.builtin.shell:  /var/opt/splunk/bin/splunk stop
+      ansible.builtin.shell:  /opt/splunk/bin/splunk stop
       become: true
     - name: Copy admin creation file
       ansible.builtin.copy:
@@ -26,7 +26,7 @@
         mode: '0744' 
       become: true
     - name: autostart splunk
-      ansible.builtin.shell:  /var/opt/splunk/bin/splunk enable boot-start -user splunk
+      ansible.builtin.shell:  /opt/splunk/bin/splunk enable boot-start -user splunk
       become: true
     - name: Change ownership on splunk directory
       ansible.builtin.file:
