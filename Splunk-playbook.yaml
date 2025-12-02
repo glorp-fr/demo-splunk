@@ -9,7 +9,7 @@
         mode: '0660'
     - name: Install a .deb package
       ansible.builtin.apt:
-        deb: ~/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
+        deb: /home/outscale/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
       become: true
     - name: start splunk
       ansible.builtin.shell:  /var/opt/splunk/bin/splunk start --no-prompt --answer-yes --accept-license
