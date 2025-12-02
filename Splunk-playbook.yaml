@@ -18,6 +18,7 @@
         recurse: yes
         owner: splunk
         group: splunk
+      become: true
     #- name: install Splunk
     #  ansible.builtin.shell: apt install splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
     #- name: sytem variable
