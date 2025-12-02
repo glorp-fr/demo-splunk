@@ -2,15 +2,32 @@
   hosts: default
   gather_facts: true
   tasks:
-    - name: Copy file with owner and permissions
+    - name: Download splunk
+      ansible.builtin.get_url:
+        url: https://download.splunk.com/products/splunk/releases/10.0.2/linux/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
+        dest: ~/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
+        mode: '0660'
+    - name: Install a .deb package
+      ansible.builtin.apt:
+        deb: ~/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
+        become: true
+    - name: start splunk
+      ansible.builtin.shell:  /var/opt/splunk/bin/splunk start --no-prompt --answer-yes --accept-license
+      become: true  
+    - name: stop splunk
+      ansible.builtin.shell:  /var/opt/splunk/bin/splunk stop
+      become: true
+    - name: Copy admin creation file
       ansible.builtin.copy:
-        src: ./install.sh
-        dest: /home/outscale/install.sh
-        owner: outscale
-        group: outscale
+        src: ./user-seed.conf
+        dest: /opt/splunk/etc/system/local/user-seed.conf
+        owner: root
+        group: root
         mode: '0744' 
-    - name: install
-      ansible.builtin.shell:  /home/outscale/install.sh #wget -O splunk-10.0.2-e2d18b4767e9-linux-amd64.deb "https://download.splunk.com/products/splunk/releases/10.0.2/linux/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb"
+      become: true
+    - name: autostart splunk
+      ansible.builtin.shell:  /var/opt/splunk/bin/splunk enable boot-start -user splunk
+      become: true
     - name: Change ownership on splunk directory
       ansible.builtin.file:
         path: /opt/splunk
@@ -19,6 +36,19 @@
         owner: splunk
         group: splunk
       become: true
+
+
+
+
+    #- name: Copy file with owner and permissions
+    #  ansible.builtin.copy:
+    #    src: ./install.sh
+    #    dest: /home/outscale/install.sh
+    #    owner: outscale
+    #    group: outscale
+    #    mode: '0744' 
+    #- name: install
+    #  ansible.builtin.shell:  /home/outscale/install.sh #wget -O splunk-10.0.2-e2d18b4767e9-linux-amd64.deb "https://download.splunk.com/products/splunk/releases/10.0.2/linux/splunk-10.0.2-e2d18b4767e9-linux-amd64.deb" 
     #- name: install Splunk
     #  ansible.builtin.shell: apt install splunk-10.0.2-e2d18b4767e9-linux-amd64.deb
     #- name: sytem variable
