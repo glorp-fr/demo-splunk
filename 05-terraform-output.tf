@@ -5,5 +5,5 @@ output "ip_splunk" {
 
 output "splunk_url" {
   description = "URL to access the Splunk instance"
-  value       = "<http://$>{outscale_vm.splunk.public_ip}:${var.splunk_port}"
+  value       = "<http://$>{outscale_vm.splunk.public_ip}:8000"
 }
