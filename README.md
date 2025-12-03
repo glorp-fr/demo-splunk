@@ -49,7 +49,6 @@ L’objectif est de faciliter le déploiement, la configuration et la mise à jo
 
 2. Déployer l’infrastructure avec Terraform :
    ```bash
-   cd ../terraform
    terraform init
    terraform apply
    ```
