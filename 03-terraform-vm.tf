@@ -2,7 +2,8 @@
 
 
 locals {
-  trigger = join("-", ["JTT", formatdate("YYYYMMDDhhmmss", timestamp())])
+  #trigger = join("-", ["JTT", formatdate("YYYYMMDDhhmmss", timestamp())])
+  trigger = "splunk-image-v1"
   packer_init_splunk = terraform_data.packer_init_splunk.output
   omi_delete = terraform_data.packer_build_splunk.output
   keypair_name = "kp-splunk"
@@ -83,7 +84,7 @@ data "outscale_images" "splunk" {
 resource "outscale_vm" "splunk" {
     image_id  = tolist(data.outscale_images.splunk.images)[0].image_id
     vm_type                  = "tinav7.c4r8p2"
-    keypair_name             = "kp-splunk"
+    keypair_name_wo          = "kp-splunk"
     subnet_id = outscale_subnet.splunk_net_sn1.subnet_id
     security_group_ids = [outscale_security_group.splunk_net_sn1_sg.security_group_id]
     tags {
